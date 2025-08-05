@@ -8,13 +8,20 @@
 function convertToObject(sourceString) {
   const result = {};
 
-  sourceString.split(';').forEach((str) => {
-    const [key, value] = str.split(':').map((str2) => str2.trim());
+  sourceString
+    .trim()
+    .split(';')
+    .forEach((str) => {
+      if (!str.trim()) {
+        return;
+      }
 
-    if (key && value) {
-      result[key] = value;
-    }
-  });
+      const [key, value] = str.split(':').map((str2) => str2.trim());
+
+      if (key && value) {
+        result[key] = value;
+      }
+    });
 
   return result;
 }
